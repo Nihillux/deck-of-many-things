@@ -62,14 +62,6 @@ export default function App() {
             <p className="text-xs text-slate-400">Provably Fair Mathematical Randomness Sandbox</p>
           </div>
         </div>
-
-        <button
-          onClick={() => setShowEntropyModal(true)}
-          className="flex items-center gap-2 text-xs font-medium px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-700 transition"
-        >
-          <ShieldCheck className="w-4 h-4 text-emerald-400" />
-          Crypto Inspector
-        </button>
       </header>
 
       <main className="flex-1 max-w-7xl w-full mx-auto p-6 grid grid-cols-1 lg:grid-cols-4 gap-8">
