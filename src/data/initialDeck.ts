@@ -1,9 +1,9 @@
-import { DeckCard } from '../@types/card';
+import type { DeckCard } from '../@types/card';
 
 export const initialDeckData: DeckCard[] = [
   { id: 'domt-1', name: 'The Vizier', suit: 'spades', value: 'A', description: 'Know the answer to any dilemma you currently face upon drawing.', rarity: 'legendary' },
   { id: 'domt-2', name: 'The Sun', suit: 'diamonds', value: 'K', description: 'Gain 50,000 XP and a wondrous item of legendary power.', rarity: 'legendary' },
-  { id: 'domt-3', name: 'The Moon', suit: 'hearts', value: 'Q', description: 'Grant the power to cast the wish spell 1-3 times.', rarity: 'rare' },
+  { id: 'domt-3', name: 'The Moon', suit: 'hearts', value: 'Q', description: 'Gain the power to cast the wish spell 1–3 times.', rarity: 'rare' },
   { id: 'domt-4', name: 'The Comet', suit: 'clubs', value: 'J', description: 'If you single-handedly defeat the next monster you meet, gain a level.', rarity: 'rare' },
   { id: 'domt-5', name: 'The Fates', suit: 'spades', value: '10', description: 'Reality’s fabric unravels. Avoid any event or tragedy at will.', rarity: 'legendary' },
   { id: 'domt-6', name: 'The Throne', suit: 'hearts', value: '10', description: 'Gain rightful ownership of a small keep and proficiency in persuasion.', rarity: 'rare' },
@@ -15,5 +15,5 @@ export const initialDeckData: DeckCard[] = [
   { id: 'domt-12', name: 'The Void', suit: 'spades', value: '2', description: 'Your soul is stripped from your body and imprisoned elsewhere.', rarity: 'legendary' },
   { id: 'domt-13', name: 'The Skull', suit: 'spades', value: '3', description: 'You summon an avatar of death. Combat is inevitable.', rarity: 'legendary' },
   { id: 'domt-14', name: 'The Idiot', suit: 'hearts', value: '4', description: 'Permanently lose a point of Intelligence.', rarity: 'common' },
-  { id: 'domt-15', name: 'The Jester', suit: 'diamonds', value: '5', description: 'Gain 10,000 XP or draw two additional cards beyond this deck.', rarity: 'common' }
+  { id: 'domt-15', name: 'The Jester', suit: 'diamonds', value: '5', description: 'Gain 10,000 XP or draw two additional cards beyond this deck.', rarity: 'common' },
 ];

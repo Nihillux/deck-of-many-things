@@ -1,24 +1,26 @@
-export function getSecureRandomInt(max: number): number {
-  if (max <= 0) return 0;
-  const array = new Uint32Array(1);
-  window.crypto.getRandomValues(array);
-  return array[0] % max;
-}
+const UINT32_RANGE = 0x1_0000_0000;
 
-export function secureShuffle<T>(array: T[]): { shuffled: T[]; entropyLog: string } {
-  const shuffled = [...array];
-  const startTime = performance.now();
-
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = getSecureRandomInt(i + 1);
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+export function getSecureRandomInt(maxExclusive: number): number {
+  if (!Number.isSafeInteger(maxExclusive) || maxExclusive <= 0) {
+    throw new RangeError('maxExclusive must be a positive safe integer.');
+  }
+  if (maxExclusive > UINT32_RANGE) {
+    throw new RangeError('maxExclusive cannot exceed 2^32.');
   }
 
-  const endTime = performance.now();
-  const duration = (endTime - startTime).toFixed(2);
+  const rejectionLimit = Math.floor(UINT32_RANGE / maxExclusive) * maxExclusive;
+  const randomValue = new Uint32Array(1);
+  do {
+    crypto.getRandomValues(randomValue);
+  } while (randomValue[0] >= rejectionLimit);
+  return randomValue[0] % maxExclusive;
+}
 
-  return {
-    shuffled,
-    entropyLog: `Generated via window.crypto.getRandomValues(). Shuffled ${shuffled.length} items in ${duration}ms with true hardware entropy.`,
-  };
+export function secureShuffle<T>(items: readonly T[]): T[] {
+  const shuffled = [...items];
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const swapIndex = getSecureRandomInt(index + 1);
+    [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
+  }
+  return shuffled;
 }
